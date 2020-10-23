@@ -74,9 +74,10 @@ func resourceAppBookmarkRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("label", app.Label)
 	d.Set("request_integration", app.Settings.App.RequestIntegration)
 
-	if err = syncGroupsAndUsers(app.Id, d, m); err != nil {
-		return err
-	}
+	// COMMENTED-OUT due to RPC issue with TFE. This method call is also not needed by myBrightlink configs
+	// if err = syncGroupsAndUsers(app.Id, d, m); err != nil {
+	// 	return err
+	// }
 
 	appRead(d, app.Name, app.Status, app.SignOnMode, app.Label, app.Accessibility, app.Visibility)
 
